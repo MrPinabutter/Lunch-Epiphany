@@ -84,7 +84,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen max-h-screen min-w-[100vw] max-w-[100vw] flex-col items-center justify-center p-8 bg-gray-950 overflow-hidden">
       <h1 className={`text-3xl font-bold text-gray-200 text-center ${dayLunch ? "mb-8": "mb-40"}`}>Qual será o almoço do RU? 🍽️</h1>
-      <div className="flex justify-between lg:w-[700px] absolute animate-fade-in mb-40">
+      <div className="flex justify-between w-[600px] lg:w-[700px] absolute animate-fade-in mb-40">
         <Image src="/spotlight.png" alt="Picture of the author" width={200} height={200} className='animate-wiggle2 duration-500' />
 
         <Image src="/spotlight.png" alt="Picture of the author" width={200} height={200} className='animate-wiggle duration-500' />
