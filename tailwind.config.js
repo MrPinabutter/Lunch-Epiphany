@@ -15,19 +15,19 @@ module.exports = {
       keyframes: {
         
         wiggle: {
-          "0%, 100%": { transform: "rotate(30deg) translateY(200px)", opacity: "1" },
+          "0%, 100%": { transform: "rotate(30deg) translateY(200px)", opacity: "0.8" },
           "30%": { opacity: "0" },
-          "50%": { transform: "rotate(45deg) translateY(200px)", opacity: "1" },
+          "50%": { transform: "rotate(45deg) translateY(200px)", opacity: "0.8" },
           "65%": { opacity: "0" },
-          "75%": { opacity: "1" },
+          "75%": { opacity: "0.8" },
           "90%": { opacity: "0" },
         },
         wiggle2: {
-          "0%, 100%": { transform: "rotate(-30deg) translateY(200px)", opacity: "1" },
+          "0%, 100%": { transform: "rotate(-30deg) translateY(200px)", opacity: "0.8" },
           "20%": { opacity: "0" },
-          "35%": { opacity: "1" },
+          "35%": { opacity: "0.8" },
           "60%": { transform: "rotate(-45deg) translateY(200px)", opacity: "0" },
-          "80%": { opacity: "1" },
+          "80%": { opacity: "0.8" },
         },
       },
       animation: {

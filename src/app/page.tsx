@@ -4,6 +4,9 @@ import axios from 'axios'
 import Image from 'next/image';
 import uuid from 'react-uuid';
 import { useEffect, useRef, useState } from 'react'
+import { Noto_Color_Emoji } from 'next/font/google'
+
+const emoji = Noto_Color_Emoji({ weight: '400', subsets: ['emoji'] })
 
 export default function Home() {
   const [dayLunch, setDayLunch] = useState('')
@@ -38,7 +41,7 @@ export default function Home() {
         sexta: string
       } | any>("https://ru-lunch.onrender.com/dias_da_semana")
 
-      setDayLunch(data[days[new Date().getDay() - 2]] ?? "Sem almoço hoje 😢")
+      setDayLunch(data[days[new Date().getDay() + 2]] ?? "Sem almoço hoje 😢")
 
 
     } catch (e) {
@@ -73,7 +76,7 @@ export default function Home() {
 
       setRenderedEmojis(prevEmojis => [
         ...prevEmojis,
-        allEmojis.map((e: string) => <Emojis key={uuid()} emoji={e} />)
+        allEmojis.map((e: string) => <Emojis className={emoji.className} key={uuid()} emoji={e} />)
       ]);
     }, delay);
 
@@ -82,17 +85,16 @@ export default function Home() {
 
 
   return (
-    <main className="flex min-h-screen max-h-screen min-w-[100vw] max-w-[100vw] flex-col items-center justify-center p-8 bg-gray-950 overflow-hidden">
-      <h1 className={`text-3xl font-bold text-gray-200 text-center ${dayLunch ? "mb-8": "mb-40"}`}>Qual será o almoço do RU? 🍽️</h1>
-      <div className="flex justify-between w-[600px] lg:w-[700px] absolute animate-fade-in mb-40">
-        <Image src="/spotlight.png" alt="Picture of the author" width={200} height={200} className='animate-wiggle2 duration-500' />
+    <main className="flex min-h-screen relative max-h-screen max-w-[100vw] flex-col items-center justify-center p-8 bg-gray-950 overflow-hidden">
+      <h1 className={`text-3xl font-bold text-gray-200 text-center ${dayLunch ? "mb-8" : "mb-40"}`}>Qual será o almoço do RU? 🍽️</h1>
 
-        <Image src="/spotlight.png" alt="Picture of the author" width={200} height={200} className='animate-wiggle duration-500' />
-      </div>
+      <Image src="/spotlight.png" alt="Spotlight" width={200} height={200} className='absolute animate-wiggle2 duration-500 -mt-20 -left-20 md:left-1/3 z-0' />
+
+      <Image src="/spotlight.png" alt="Spotlight" width={200} height={200} className='absolute animate-wiggle duration-500 -mt-20 -right-20 md:right-1/3 z-0' />
       {dayLunch && (
         <div className="flex flex-col items-center justify-center">
-          <h2 className="text-3xl mt-4 text-gray-400 mb-4">Hoje é dia de:</h2>
-          <h3 className="text-2xl mt-4 text-center">
+          <h2 className="text-3xl mt-4 text-gray-400 mb-4 z-10">Hoje é dia de:</h2>
+          <h3 className="text-2xl mt-4 text-center z-10">
             {dayLunch}
           </h3>
           <div className='relative'>
@@ -104,7 +106,7 @@ export default function Home() {
   )
 }
 
-const Emojis = ({ emoji }: any) => {
+const Emojis = ({ emoji, className }: any) => {
 
   let coeficienteAngular = Math.random() * 2 - 1
   let coeficienteLinear = Math.random() * 2 - 1
@@ -130,6 +132,6 @@ const Emojis = ({ emoji }: any) => {
   }, [coeficienteAngular, coeficienteLinear])
 
   return (
-    <span ref={spanRef} className={`translate-x-1/2 translate-y-1/2 text-sm opacity-0 transition-all absolute animate-fade-in`}>{emoji}</span>
+    <span ref={spanRef} className={`translate-x-1/2 translate-y-1/2 z-20 text-sm opacity-0 transition-all absolute animate-fade-in ${className}`}>{emoji}</span>
   )
 }
