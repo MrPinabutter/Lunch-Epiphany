@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import Image from 'next/image';
+import uuid from 'react-uuid';
 import { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
@@ -72,7 +73,7 @@ export default function Home() {
 
       setRenderedEmojis(prevEmojis => [
         ...prevEmojis,
-        allEmojis.map((e: string) => <Emojis emoji={e} />)
+        allEmojis.map((e: string) => <Emojis key={uuid()} emoji={e} />)
       ]);
     }, delay);
 
@@ -126,7 +127,7 @@ const Emojis = ({ emoji }: any) => {
       fill: 'forwards',
     })
 
-  }, [])
+  }, [coeficienteAngular, coeficienteLinear])
 
   return (
     <span ref={spanRef} className={`translate-x-1/2 translate-y-1/2 text-sm opacity-0 transition-all absolute animate-fade-in`}>{emoji}</span>
