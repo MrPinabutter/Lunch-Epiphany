@@ -3,6 +3,7 @@
 import './globals.css'
 import { Paytone_One } from 'next/font/google'
 import { Head } from 'next/document';
+import Script from 'next/script';
 
 
 const paytone = Paytone_One({ weight: '400', subsets: ['latin'] })
@@ -20,8 +21,8 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <Head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880529356907888"
-          crossOrigin="anonymous"></script>
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880529356907888"
+          crossOrigin="anonymous"></Script>
       </Head>
       <body className={paytone.className}>{children}</body>
     </html>
