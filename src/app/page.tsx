@@ -27,6 +27,7 @@ export default function Home() {
     // candy: ['🍬'],
     peixe: ['🐟', '🐠', '🎣'],
     arroz: ['🍚', '🥘'],
+    xadrez: ['♟️', '🏁'],
     // pasta: ['🍝'],
     // "sem almoço hoje": ['😢'],
   }
