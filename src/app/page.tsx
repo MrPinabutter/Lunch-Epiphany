@@ -129,9 +129,10 @@ const Emojis = ({ emoji, className }: any) => {
     return linspace;
   }
 
+  const linespaceW = calculateLinspace(width)
+  const linespaceH = calculateLinspace(height)
+
   useEffect(() => {
-    const linespaceW = calculateLinspace(width)
-    const linespaceH = calculateLinspace(height)
 
     buttonRef.current?.animate({
       transform: [
@@ -157,10 +158,10 @@ const Emojis = ({ emoji, className }: any) => {
 
     buttonRef.current?.animate({
       transform: [
-        `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(4)`,
-        `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(6.5)`,
-        `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(2.5)`,
-        `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(0)`,
+        `translate(${coeficienteAngular * linespaceW[4]}px, ${coeficienteLinear * linespaceH[4]}px) scale(4)`,
+        `translate(${coeficienteAngular * linespaceW[4]}px, ${coeficienteLinear * linespaceH[4]}px) scale(6.5)`,
+        `translate(${coeficienteAngular * linespaceW[4]}px, ${coeficienteLinear * linespaceH[4]}px) scale(2.5)`,
+        `translate(${coeficienteAngular * linespaceW[4]}px, ${coeficienteLinear * linespaceH[4]}px) scale(0)`,
       ],
       opacity: [1, 0],
       visibility: ['visible', 'hidden']
