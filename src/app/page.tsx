@@ -28,7 +28,7 @@ export default function Home() {
     peixe: ['🐟', '🐠', '🎣'],
     arroz: ['🍚', '🥘'],
     // pasta: ['🍝'],
-    "sem almoço hoje": ['😢'],
+    // "sem almoço hoje": ['😢'],
   }
 
   const getLunch = async () => {
@@ -85,6 +85,9 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [dayLunch]);
 
+  useEffect(() => {
+    ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+  }, [])
 
   return (
     <main className="flex min-h-screen relative max-h-screen max-w-[100vw] flex-col items-center justify-center p-8 bg-gray-950 overflow-hidden">
@@ -108,6 +111,12 @@ export default function Home() {
           </div>
         </div>
       )}
+
+
+      <div className='ad'>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880529356907888"
+          crossOrigin="anonymous"></script>
+      </div>
     </main>
   )
 }
