@@ -1,10 +1,7 @@
-"use client";
-
 import './globals.css'
 import { Paytone_One } from 'next/font/google'
 import { Head } from 'next/document';
 import Script from 'next/script';
-
 
 const paytone = Paytone_One({ weight: '400', subsets: ['latin'] })
 
