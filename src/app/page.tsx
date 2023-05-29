@@ -28,6 +28,7 @@ export default function Home() {
     peixe: ['🐟', '🐠', '🎣'],
     arroz: ['🍚', '🥘'],
     // pasta: ['🍝'],
+    "sem almoço hoje": ['😢'],
   }
 
   const getLunch = async () => {
@@ -89,9 +90,13 @@ export default function Home() {
     <main className="flex min-h-screen relative max-h-screen max-w-[100vw] flex-col items-center justify-center p-8 bg-gray-950 overflow-hidden">
       <h1 className={`text-3xl font-bold text-gray-200 text-center ${dayLunch ? "mb-8" : "mb-40"}`}>Qual será o almoço do RU? 🍽️</h1>
 
-      <Image src="/spotlight.png" alt="Spotlight" width={200} height={200} className='absolute animate-wiggle2 duration-500 -mt-20 -left-20 md:left-1/3 z-0' />
+      {new Date().getDay() !== 0 && new Date().getDay() !== 6 && (
+        <>
+          <Image src="/spotlight.png" alt="Spotlight" width={200} height={200} className='absolute animate-wiggle2 duration-500 -mt-20 -left-20 md:left-1/3 z-0' />
 
-      <Image src="/spotlight.png" alt="Spotlight" width={200} height={200} className='absolute animate-wiggle duration-500 -mt-20 -right-20 md:right-1/3 z-0' />
+          <Image src="/spotlight.png" alt="Spotlight" width={200} height={200} className='absolute animate-wiggle duration-500 -mt-20 -right-20 md:right-1/3 z-0' />
+        </>
+      )}
       {dayLunch && (
         <div className="flex flex-col items-center justify-center">
           <h2 className="text-3xl mt-4 text-gray-400 mb-4 z-10">Hoje é dia de:</h2>
