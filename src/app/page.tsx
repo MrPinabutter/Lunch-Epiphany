@@ -44,8 +44,6 @@ export default function Home() {
       } | any>("https://ru-lunch.onrender.com/dias_da_semana")
 
       setDayLunch(data[days[new Date().getDay() - 1]] ?? "Sem almoço hoje 😢")
-
-
     } catch (e) {
       console.log(e)
     }
@@ -58,7 +56,7 @@ export default function Home() {
   const [renderedEmojis, setRenderedEmojis] = useState<string[]>([]);
 
   useEffect(() => {
-    const delay = 300; // Ajuste o valor do atraso conforme necessário
+    const delay = 700; // Ajuste o valor do atraso conforme necessário
 
     const timer = setInterval(() => {
       const nextEmojiIndex = renderedEmojis.length;
@@ -112,11 +110,10 @@ export default function Home() {
 }
 
 const Emojis = ({ emoji, className }: any) => {
-
+  const [destroy, setDestroy] = useState(false)
+  const spanRef = useRef<HTMLSpanElement>(null)
   let coeficienteAngular = Math.random() * 2 - 1
   let coeficienteLinear = Math.random() * 2 - 1
-
-  const spanRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
     spanRef.current?.animate({
@@ -134,9 +131,26 @@ const Emojis = ({ emoji, className }: any) => {
       fill: 'forwards',
     })
 
-  }, [coeficienteAngular, coeficienteLinear])
+  }, [])
+
+  const animatePop = () => {
+    spanRef.current?.animate({
+      transform: [
+        `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(4)`,
+        `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(6.5)`,
+        `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(2.5)`,
+        `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(0)`,
+      ],
+      opacity: [1, 0],
+      visibility: ['visible', 'hidden']
+    }, {
+      duration: 500,
+      easing: 'ease-in-out',
+      fill: 'forwards',
+    })
+  }
 
   return (
-    <span ref={spanRef} className={`translate-x-1/2 translate-y-1/2 z-20 text-sm opacity-0 transition-all absolute animate-fade-in ${className}`}>{emoji}</span>
+    <span onClick={animatePop} ref={spanRef} className={`select-none translate-x-1/2 translate-y-1/2 z-20 text-sm opacity-0 transition-all absolute ${className} ${destroy ? '' : "animate-fade-in"}`}>{emoji} </span>
   )
 }
