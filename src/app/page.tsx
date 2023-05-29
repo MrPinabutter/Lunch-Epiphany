@@ -95,7 +95,7 @@ export default function Home() {
       {dayLunch && (
         <div className="flex flex-col items-center justify-center">
           <h2 className="text-3xl mt-4 text-gray-400 mb-4 z-10">Hoje é dia de:</h2>
-          <h3 className="text-2xl mt-4 text-[#daa520] text-center z-10">
+          <h3 className="text-2xl mt-4 text-gray-200 text-center z-10">
             {dayLunch}
           </h3>
           <div className='relative'>
