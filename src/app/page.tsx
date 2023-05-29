@@ -57,7 +57,7 @@ export default function Home() {
   const [renderedEmojis, setRenderedEmojis] = useState<any[]>([]);
 
   useEffect(() => {
-    const delay = 800; // Ajuste o valor do atraso conforme necessário
+    const delay = 500;
 
     const timer = setInterval(() => {
       const nextEmojiIndex = renderedEmojis.length;
@@ -133,7 +133,6 @@ const Emojis = ({ emoji, className }: any) => {
   const linespaceH = calculateLinspace(height)
 
   useEffect(() => {
-
     buttonRef.current?.animate({
       transform: [
         `translate(${coeficienteAngular * linespaceW[0]}px, ${coeficienteLinear * linespaceH[0]}px) scale(0.5)`,
@@ -148,7 +147,6 @@ const Emojis = ({ emoji, className }: any) => {
       easing: 'ease-in-out',
       fill: 'forwards',
     })
-
   }, [])
 
   const animatePop = () => {
