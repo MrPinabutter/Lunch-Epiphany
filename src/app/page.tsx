@@ -112,12 +112,12 @@ export default function Home() {
 
 const Emojis = ({ emoji, className }: any) => {
   const [destroy, setDestroy] = useState(false)
-  const spanRef = useRef<HTMLSpanElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   let coeficienteAngular = Math.random() * 2 - 1
   let coeficienteLinear = Math.random() * 2 - 1
 
   useEffect(() => {
-    spanRef.current?.animate({
+    buttonRef.current?.animate({
       transform: [
         `translate(${coeficienteAngular * 100}px, ${coeficienteLinear * 100}px) scale(0.5)`,
         `translate(${coeficienteAngular * 200}px, ${coeficienteLinear * 200}px) scale(1.5)`,
@@ -135,7 +135,11 @@ const Emojis = ({ emoji, className }: any) => {
   }, [])
 
   const animatePop = () => {
-    spanRef.current?.animate({
+    // Disable onClick
+    buttonRef.current?.setAttribute('onClick', '')
+    buttonRef.current?.setAttribute('disabled', 'true')
+
+    buttonRef.current?.animate({
       transform: [
         `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(4)`,
         `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(6.5)`,
@@ -151,7 +155,16 @@ const Emojis = ({ emoji, className }: any) => {
     })
   }
 
+  const handleDestroy = () => {
+    animatePop()
+    setTimeout(() => {
+      setDestroy(true)
+    }, 520)
+  }
+
+  if (destroy) return null
+
   return (
-    <span onClick={animatePop} ref={spanRef} className={`select-none translate-x-1/2 translate-y-1/2 z-20 text-sm opacity-0 transition-all absolute ${className} ${destroy ? '' : "animate-fade-in"}`}>{emoji} </span>
+    <button onClick={handleDestroy} ref={buttonRef} className={`select-none translate-x-1/2 translate-y-1/2 z-20 text-sm opacity-0 transition-all absolute ${className}`}>{emoji} </button>
   )
 }
