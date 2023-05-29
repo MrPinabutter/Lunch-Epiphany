@@ -19,8 +19,7 @@ export default function Home() {
     porco: ['🐷', '🐽'],
     bife: ['🐮'],
     'cozidão': ['🐮', '🍲', '🍖'],
-    // 'salpicão': ['🥗', '🥬', '🥕', '🥦', '🍗'],
-    'salpicão': ['🧂', '🍆'],
+    'salpicão': Math.random() * 10 > 0.5 ? ['🥗', '🥬', '🥕', '🥦', '🍗'] : ['🧂', '🍆'],
     feijoada: ['🫘', '🥓', '🐷'],
     batata: ['🥔'],
     // melon: ['🍈'],
@@ -32,6 +31,8 @@ export default function Home() {
   }
 
   const getLunch = async () => {
+    if (new Date().getDay() === 0 || new Date().getDay() === 6) return setDayLunch("Sem almoço hoje 😢")
+
     try {
       const { data } = await axios.get<{
         segunda: string
@@ -41,7 +42,7 @@ export default function Home() {
         sexta: string
       } | any>("https://ru-lunch.onrender.com/dias_da_semana")
 
-      setDayLunch(data[days[new Date().getDay() + 2]] ?? "Sem almoço hoje 😢")
+      setDayLunch(data[days[new Date().getDay() - 1]] ?? "Sem almoço hoje 😢")
 
 
     } catch (e) {
@@ -94,7 +95,7 @@ export default function Home() {
       {dayLunch && (
         <div className="flex flex-col items-center justify-center">
           <h2 className="text-3xl mt-4 text-gray-400 mb-4 z-10">Hoje é dia de:</h2>
-          <h3 className="text-2xl mt-4 text-gray-200 text-center z-10">
+          <h3 className="text-2xl mt-4 text-[#daa520] text-center z-10">
             {dayLunch}
           </h3>
           <div className='relative'>
