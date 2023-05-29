@@ -54,10 +54,10 @@ export default function Home() {
     getLunch()
   }, [])
 
-  const [renderedEmojis, setRenderedEmojis] = useState<string[]>([]);
+  const [renderedEmojis, setRenderedEmojis] = useState<any[]>([]);
 
   useEffect(() => {
-    const delay = 700; // Ajuste o valor do atraso conforme necessário
+    const delay = 800; // Ajuste o valor do atraso conforme necessário
 
     const timer = setInterval(() => {
       const nextEmojiIndex = renderedEmojis.length;
@@ -82,7 +82,7 @@ export default function Home() {
     }, delay);
 
     return () => clearInterval(timer);
-  }, [dayLunch]);
+  }, [dayLunch])
 
   return (
     <main className="flex min-h-screen relative max-h-screen max-w-[100vw] flex-col items-center justify-center p-8 bg-gray-950 overflow-hidden">
@@ -115,15 +115,31 @@ const Emojis = ({ emoji, className }: any) => {
   const buttonRef = useRef<HTMLButtonElement>(null)
   let coeficienteAngular = Math.random() * 2 - 1
   let coeficienteLinear = Math.random() * 2 - 1
+  const width = window.innerWidth * 0.6
+  const height = window.innerHeight * 0.9
+
+  function calculateLinspace(size: number, numPoints = 5) {
+    const stepSize = size / numPoints;
+    const linspace = [];
+
+    for (let i = 0; i <= size; i += stepSize) {
+      linspace.push(i);
+    }
+
+    return linspace;
+  }
 
   useEffect(() => {
+    const linespaceW = calculateLinspace(width)
+    const linespaceH = calculateLinspace(height)
+
     buttonRef.current?.animate({
       transform: [
-        `translate(${coeficienteAngular * 100}px, ${coeficienteLinear * 100}px) scale(0.5)`,
-        `translate(${coeficienteAngular * 200}px, ${coeficienteLinear * 200}px) scale(1.5)`,
-        `translate(${coeficienteAngular * 300}px, ${coeficienteLinear * 300}px) scale(2.5)`,
-        `translate(${coeficienteAngular * 400}px, ${coeficienteLinear * 400}px) scale(3.5)`,
-        `translate(${coeficienteAngular * 500}px, ${coeficienteLinear * 500}px) scale(4.5)`,
+        `translate(${coeficienteAngular * linespaceW[0]}px, ${coeficienteLinear * linespaceH[0]}px) scale(0.5)`,
+        `translate(${coeficienteAngular * linespaceW[1]}px, ${coeficienteLinear * linespaceH[1]}px) scale(1.5)`,
+        `translate(${coeficienteAngular * linespaceW[2]}px, ${coeficienteLinear * linespaceH[2]}px) scale(2.5)`,
+        `translate(${coeficienteAngular * linespaceW[3]}px, ${coeficienteLinear * linespaceH[3]}px) scale(3.5)`,
+        `translate(${coeficienteAngular * linespaceW[4]}px, ${coeficienteLinear * linespaceH[4]}px) scale(4.5)`,
       ],
       opacity: [0, 1],
     }, {

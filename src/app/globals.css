@@ -9,6 +9,14 @@
   color-scheme: only light;
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
