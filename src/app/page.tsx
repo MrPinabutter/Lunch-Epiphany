@@ -42,7 +42,7 @@ export default function Home() {
         quarta: string
         quinta: string
         sexta: string
-      } | any>("https://ru-lunch.onrender.com/dias_da_semana")
+      } | any>("https://web-scrapping-ru-ufpi.vercel.app/dias_da_semana")
 
       setDayLunch(data[days[new Date().getDay() - 1]] ?? "Sem almoço hoje 😢")
     } catch (e) {
